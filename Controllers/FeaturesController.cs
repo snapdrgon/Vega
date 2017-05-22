@@ -14,9 +14,9 @@ namespace Vega.Controllers
     [Route("api/Features")]
     public class FeaturesController : Controller
     {
-        private readonly VegaContext _context;
+        private readonly VegaDbContext _context;
 
-        public FeaturesController(VegaContext context)
+        public FeaturesController(VegaDbContext context)
         {
             _context = context;
         }

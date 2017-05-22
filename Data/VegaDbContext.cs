@@ -8,9 +8,9 @@ using Vega.Models;
 namespace Vega.Data
 {
     
-    public class VegaContext : DbContext
+    public class VegaDbContext : DbContext
     {
-        public VegaContext(DbContextOptions<VegaContext> options) : base(options)
+        public VegaDbContext(DbContextOptions<VegaDbContext> options) : base(options)
         {
         }
 

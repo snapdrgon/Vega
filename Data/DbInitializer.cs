@@ -7,7 +7,7 @@ namespace Vega.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(VegaContext context)
+        public static void Initialize(VegaDbContext context)
         {
             context.Database.EnsureCreated();
 

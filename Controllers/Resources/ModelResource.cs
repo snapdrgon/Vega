@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Vega.Models;
 
-namespace Vega.Models
+namespace Vega.Controllers.Resources
 {
-    public class Feature
+    public class ModelResource
     {
         public int ID { get; set; }
-        [Required]
-        [StringLength(255)]
+        
         public string Name { get; set; }
-    }
+     }
 }
