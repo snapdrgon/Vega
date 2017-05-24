@@ -1,0 +1,10 @@
+﻿<h2>Build a Vega</h2>
+
+    <ul *ngFor="let make of makes">
+        <li>{{make.name}}</li>
+        <li  style="margin-left: 40px" *ngFor="let models of make.models">{{models.name}}</li>
+    </ul>
+
+    <ul *ngFor="let feature of features">
+        <li>{{feature.name}}</li>
+    </ul>
