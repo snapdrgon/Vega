@@ -1,20 +1,20 @@
 ﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { VegaService } from '../../../services/vega.service';
-import { Make } from '../data/make';
-import { Model } from '../data/model';
-import { ContactInfo } from '../data/contactInfo';
-import { Feature, FeatureFlag } from '../data/feature';
+import { VegaService } from '../../services/vega.service';
+import { Make } from '../../data/make';
+import { Model } from '../../data/model';
+import { ContactInfo } from '../../data/contactInfo';
+import { Feature, FeatureFlag } from '../../data/feature';
 
 @Component({
-    selector: 'vehicle-new',
-    templateUrl: './vehicle-new.component.html',
-    styleUrls: ['./vehicle-new.component.css'],
+    selector: 'vehicle',
+    templateUrl: './vehicle.component.html',
+    styleUrls: ['./vehicle.component.css'],
     providers: [VegaService] //would not normally place this here, but throws no provider error otherwise
     }
 )
 
-export class VehicleNewComponent implements OnInit, OnDestroy {
+export class VehicleComponent implements OnInit, OnDestroy {
     vegaAddForm: FormGroup;
     makes: Make[]=[];
     models: Model[]=[];
@@ -43,9 +43,7 @@ export class VehicleNewComponent implements OnInit, OnDestroy {
        this.makes = [];
        this.features = [];
        this.subscribe = this._service.getMakes()
-           .subscribe(makes => {
-               makes.forEach(make => { this.makes.push(make) })
-           });
+           .subscribe(makes => this.makes = makes);
        this.subscribe = this._service.getFeatures()
            .subscribe(features => {
                features.forEach(feature => {
@@ -61,12 +59,10 @@ export class VehicleNewComponent implements OnInit, OnDestroy {
        this.subscribe.destroy;
    }
 
-   addVega() {
-       console.log('Vega added');
-   }
-
+ 
    onMakeChange(id) {
-       this.models = this.makes.find(make => make.id === +id).models;
+       var selectedMake = this.makes.find(make => make.id === +id);
+       this.models = selectedMake ? selectedMake.models : [];
    }
 
    onModelChange(make) {

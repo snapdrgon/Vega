@@ -2,8 +2,8 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/RX';
 import { Injectable } from '@angular/core';
-import { Make } from '../components/app/data/make';
-import { Feature } from '../components/app/data/feature';
+import { Make } from '../data/make';
+import { Feature } from '../data/feature';
 
 @Injectable()
 export class VegaService {

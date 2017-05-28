@@ -1,11 +1,12 @@
 ﻿<h2>{{title}}</h2>
 <div class="row">
     <div class="col-md-6 well">
-        <form [formGroup]='vegaAddForm' (ngSubmit)='addVega()'>
+        <form [formGroup]='vegaAddForm' (ngSubmit)='onSave()'>
             <fieldset>
                 <legend>Configuration</legend>
                 <label for="make">Makes</label>
                 <select id="make" class="form-control" (change)="onMakeChange($event.target.value)" formControlName="make">
+                    <option></option>
                     <option *ngFor="let make of makes; let i = index;" [value]="make.id">{{make.name}}</option>
                 </select>
                 <br/>
@@ -14,15 +15,21 @@
                     <option *ngFor="let model of models; let i = index;" [value]="model.id">{{model.name}}</option>
                 </select>
                 <br/>
-                <label for="registered">Is this vehicle registered?</label>
-                <div>
-                    <input formControlName="registered" type="radio" id="registered" name="registered" [(ngModel)]="registered" [value]="true">Yes
-                    <input formControlName="registered" type="radio" id="registered" name="registered" [(ngModel)]="registered" [value]="false">No
+                <h4>Is this vehicle registered?</h4>
+                <div class="radio">
+                    <label for="registered">
+                        <input formControlName="registered" type="radio" id="registered" name="registered" [(ngModel)]="registered" [value]="true">Yes
+                    </label>
+                    <label for="notRegistered">
+                        <input formControlName="registered" type="radio" id="notRegistered" name="registered" [(ngModel)]="registered" [value]="false">No
+                     </label>
                 </div>
                 <br/>
-                <label for="features">Features</label>
-                <div  *ngFor="let feature of features;" >
-                    <div><input id="features" type="checkbox" formControlName="features" (change)="onFeatureChecked(feature)" />{{feature.name}} </div> 
+                <h4>Features</h4>
+                <div  *ngFor="let feature of features;" class="checkbox">
+                    <label for="feature{{feature.id}}">
+                        <input id="feature{{feature.id}}" type="checkbox" (change)="onFeatureChecked(feature)" />{{feature.name}}
+                    </label>
                 </div>
             </fieldset>
             <hr />
@@ -38,7 +45,7 @@
                 <input id="contactEmail" type="text" class="form-control" formControlName="contactEmail"
                        placeholder="Enter email address" [(ngModel)]="contactInfo.email" /><br />
             </fieldset>
-            <button class="btn btn-primary" type="submit" (click)="onSave()">Save</button>
+            <button class="btn btn-primary" type="submit">Save</button>
         </form>
     </div>
 </div>
